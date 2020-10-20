@@ -74,24 +74,37 @@ int smoothPercentage(int rawPercentage)
 
     // calculate the average:
     average = total / numReadings;
-
+    Serial.println(smoothedPercentage);
     return average;
+}
+
+void drawNumericPercentage(int smoothedPercentage){
+    lcd.setCursor(0, 0);
+    lcd.print("Percentage: ");
+    lcd.print(smoothedPercentage);
+    lcd.print("%");  
+}
+
+void drawBarChart(int smoothedPercentage){
+    lbg.drawValue(smoothedPercentage, 100);
 }
 
 void loop()
 {
+    // gather voltage reading from fuel level sending unit
     rawSendingUnitValue = retrieveSendingUnitValue();
+
+    // compare current sending unit value against the known empty and fuel tank values
     rawPercentage = derivePercentage(rawSendingUnitValue);
+
+    // average percentage readings to eleminate erronious readings due to minor fluctuations in fuel level (sloshing in the tank)
     smoothedPercentage = smoothPercentage(rawPercentage);
 
     // numeric display option
-    lcd.setCursor(0, 0);
-    lcd.print("Percentage: ");
-    lcd.print(smoothedPercentage);
-    lcd.print("%");
+    drawNumericPercentage(smoothedPercentage);
 
     // bar chart option
-    lbg.drawValue(smoothedPercentage, 100);
+    drawBarChart(smoothedPercentage);
 
     delay(100);
 }
