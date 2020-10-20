@@ -9,7 +9,8 @@ Stand alone fuel gauge setup based on Arduino architecture. Scaling specific to 
 1. Consume signal from fuel level sending unit
     - May be based on voltage drop or maybe be resistance based. Either circuit will read the output of the level sensing potentiometer (TBD)
 1. Parse sensor output
-    - Determine min and max for level sensor
+    - Reduce 12v based signal down to 5v base while maintaining variation in the value
+    - Determine min and max voltages for level sensor
     - Map values into 0-100% values
 1. Display mapped values as either percentage or bar chart (or both)
 1. Smooth display reading (to account for fuel slosh in the tank)
