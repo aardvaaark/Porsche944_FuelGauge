@@ -1,7 +1,7 @@
 # Porsche Spec944 Standalone Fuel Gauge
 Stand alone fuel gauge setup based on Arduino architecture. Scaling specific to the 1985.5+ Porsche 944 fuel level sending unit.
 
-[944](/resources/images/944_1.jpg)
+<img src="/resources/images/944_1.jpg" alt="drawing" width="900"/>
 
 ## Requirements
 
